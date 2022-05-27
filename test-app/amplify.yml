@@ -1,0 +1,21 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - cd ../../
+            - yarn install
+        build:
+          commands:
+            - yarn run build
+            - cd apps/white-labeled-app
+      artifacts:
+        baseDirectory: build
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - node_modules/**/*
+          - ../../node_modules/**/*
+    appRoot: apps/white-labeled-app
